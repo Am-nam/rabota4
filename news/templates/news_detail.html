@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{{ news.title }}</h1>
+
+<p>{{ news.content }}</p>
+
+<hr>
+
+<p><b>Автор:</b> {{ news.author }}</p>
+<p><b>Дата публикации:</b> {{ news.created_at }}</p>
+{% if news.image %}
+    <img src="{{ news.image.url }}" alt="{{ news.title }}" style="max-width:300px;">
+{% endif %}
+
+<hr>
+
+<h2>Комментарии</h2>
+
+{% for comment in comments %}
+    <div style="margin-bottom: 10px; padding: 8px; border: 1px solid #ddd;">
+        <b>{{ comment.user.username }}</b><br>
+        <span>{{ comment.text }}</span><br>
+        <small>{{ comment.created_at }}</small>
+    </div>
+{% empty %}
+    <p>Комментариев пока нет.</p>
+{% endfor %}
+
+{% if user.is_authenticated %}
+    <hr>
+
+    <h3>Добавить комментарий</h3>
+
+    <form method="POST">
+        {% csrf_token %}
+        <textarea name="text" rows="3" cols="40" placeholder="Напишите комментарий"></textarea><br><br>
+        <button type="submit">Отправить</button>
+    </form>
+
+{% else %}
+    <p>Войдите, чтобы оставить комментарий</p>
+{% endif %}
+
+{% endblock %}

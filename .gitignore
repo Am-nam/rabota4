@@ -1,0 +1,29 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+venv/
+env/
+.env/
+
+# Database
+db.sqlite3
+
+# Media files (загруженные пользователями)
+media/
+
+# Static files (если собираешь collectstatic)
+staticfiles/
+
+# Django secret stuff (если используешь .env)
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

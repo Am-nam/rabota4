@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Новости</h1>
+
+<form method="get">
+
+    <input type="text" name="q" placeholder="Поиск..." value="{{ request.GET.q }}">
+
+    <!-- фильтр по дате -->
+    <input type="date" name="date" value="{{ request.GET.date }}">
+
+    <select name="sort">
+        <option value="">Сначала новые</option>
+        <option value="old" {% if request.GET.sort == 'old' %}selected{% endif %}>
+            Сначала старые
+        </option>
+    </select>
+
+    <button type="submit">Применить</button>
+</form>
+
+<hr>
+
+{% for n in news %}
+<div class="news-item">
+    <a href="/news/{{ n.id }}/">{{ n.title }}</a>
+    <div>{{ n.created_at }}</div>
+</div>
+{% empty %}
+    <p>Новостей нет</p>
+{% endfor %}
+
+{% endblock %}
