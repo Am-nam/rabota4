@@ -8,16 +8,10 @@ venv/
 env/
 .env/
 
-# Database
-db.sqlite3
-
-# Media files (загруженные пользователями)
-media/
-
-# Static files (если собираешь collectstatic)
+# Static files 
 staticfiles/
 
-# Django secret stuff (если используешь .env)
+# Django secret stuff 
 *.log
 
 # IDE
